@@ -64,7 +64,7 @@ async def _batch(event):
             conv.cancel()
             batch.clear()
 
-async def run_batch(userbot, client, event.chat_id, link, _range):
+async def run_batch(userbot, client, chat_id, link, _range):
     for i in range(_range):
         timer = 60
         if i < 25:
