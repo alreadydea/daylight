@@ -1,3 +1,10 @@
+#Tg:MaheshChauhan/DroneBots
+#Github.com/Vasusen-code
+
+"""
+Plugin for both public & private channels!
+"""
+
 import time, os, asyncio
 
 from .. import bot as Drone
@@ -79,22 +86,22 @@ async def run_batch(userbot, client, chat_id, link, _range):
             else:
                 timer = 3
         try: 
-            if not event.chat_id in batch:
-                await client.send_message(event.chat_id, "Batch completed.")
+            if not chat_id in batch:
+                await client.send_message(chat_id, "Batch completed.")
                 break
         except Exception as e:
             print(e)
-            await client.send_message(event.chat_id, "Batch completed.")
+            await client.send_message(chat_id, "Batch completed.")
             break
         try:
-            await get_bulk_msg(userbot, client, event.chat_id, link, i) 
+            await get_bulk_msg(userbot, client, chat_id, link, i) 
         except FloodWait as fw:
             if int(fw.x) > 299:
-                await client.send_message(event.chat_id, "Cancelling batch since you have floodwait more than 5 minutes.")
+                await client.send_message(chat_id, "Cancelling batch since you have floodwait more than 5 minutes.")
                 break
             await asyncio.sleep(fw.x + 5)
-            await get_bulk_msg(userbot, client, event.chat_id, link, i)
-        protection = await client.send_message(event.chat_id, f"Sleeping for `{timer}` seconds to avoid Floodwaits and Protect account!")
+            await get_bulk_msg(userbot, client, chat_id, link, i)
+        protection = await client.send_message(chat_id, f"Sleeping for `{timer}` seconds to avoid Floodwaits and Protect account!")
         await asyncio.sleep(timer)
         await protection.delete()
             
